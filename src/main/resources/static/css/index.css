@@ -1,0 +1,11 @@
+
+i {
+    display: inline-block;
+    background: url("../img/add.png") no-repeat;
+    width: 50%;
+    height: 50%;
+}
+
+li, ul {
+    list-style: none;
+}
