@@ -1,6 +1,7 @@
 package com.fehead.fragileculturalrelics.service;
 
 import com.fehead.fragileculturalrelics.entity.ObjectDocument;
+import com.fehead.fragileculturalrelics.entity.PostInfo;
 
 import java.util.List;
 
@@ -35,4 +36,12 @@ public interface ObjectDocumentService {
      * @return
      */
     Boolean saveDocument(ObjectDocument document);
+
+    /**
+     * 将文章简介保存在数据库
+     *
+     * @param info
+     * @return
+     */
+    Boolean saveDocumentInfo(PostInfo info);
 }

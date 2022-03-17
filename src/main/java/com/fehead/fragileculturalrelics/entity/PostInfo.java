@@ -1,16 +1,15 @@
 package com.fehead.fragileculturalrelics.entity;
 
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
- * 文物信息摘要
- *
  * @author wrobby
  * @version 1.0
- * @date 2022/3/15 19:50
+ * @date 2022/3/17 23:02
  */
 @Data
-public class BriefInfo {
+public class PostInfo {
     private String id;
     /**
      * 文物名称
@@ -31,6 +30,5 @@ public class BriefInfo {
     /**
      * 文物照片（缩略图）
      */
-    private String image;
-
+    private MultipartFile image;
 }

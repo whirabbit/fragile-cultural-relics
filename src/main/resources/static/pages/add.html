@@ -29,11 +29,11 @@
 <body>
 <h2>摘要信息</h2>
 <div id="document-info">
-    <form action="" method="post">
+    <form action="http://localhost:8080/document/submitInfo" method="post">
         <table>
             <tr>
                 <td>文物名称</td>
-                <td><input name="name" type="text"></td>
+                <td><input name="name" type="text"><input id="info-id" name="id" type="hidden" value="123"></td>
             </tr>
             <tr>
                 <td>文物编号</td>
@@ -49,36 +49,41 @@
             </tr>
             <tr>
                 <td>文物照片（缩略图）</td>
-                <td><input name="image" type="file" accept="image/*"></td>
+                <td><input id="image-input" name="img" type="file" accept="image/*"><input id="image-id" name="image"
+                                                                                           type="hidden"></td>
+                <td>
+                    <button onclick="uploading()">上传
+                    </button>
+                </td>
             </tr>
         </table>
     </form>
 </div>
 <hr/>
 <div>
-<h2>详细信息</h2>
-<div class="div-root">
-    <ul id="document-part-1" class="folder">
-        <li >文物信息<img src="../img/add.png">
-        </li>
-    </ul>
-</div>
+    <h2>详细信息</h2>
+    <div class="div-root">
+        <ul id="document-part-1" class="folder">
+            <li>文物信息<img src="../img/add.png">
+            </li>
+        </ul>
+    </div>
 
-<div class="div-root">
-    <ul id="document-part-2" class="folder">
-        <li>环境信息<img src="../img/add.png"></li>
-    </ul>
-</div>
-<div class="div-root">
-    <ul id="document-part-3" class="folder">
-        <li>病害信息与劣化参数<img src="../img/add.png"></li>
-    </ul>
-</div>
-<div class="div-root">
-    <ul id="document-part-4" class="folder">
-        <li>保护方案<img src="../img/add.png"></li>
-    </ul>
-</div>
+    <div class="div-root">
+        <ul id="document-part-2" class="folder">
+            <li>环境信息<img src="../img/add.png"></li>
+        </ul>
+    </div>
+    <div class="div-root">
+        <ul id="document-part-3" class="folder">
+            <li>病害信息与劣化参数<img src="../img/add.png"></li>
+        </ul>
+    </div>
+    <div class="div-root">
+        <ul id="document-part-4" class="folder">
+            <li>保护方案<img src="../img/add.png"></li>
+        </ul>
+    </div>
     <button onclick="postSubmit()">提交</button>
 </div>
 <div id="test"></div>

@@ -18,12 +18,12 @@ public class CommonResult {
     private Object data;
 
     public static CommonResult ok(Object data) {
-        return CommonResult.builder().code(200).status("ok").message("").data(data).build();
+        return CommonResult.builder().code(200).status("ok").message("成功").data(data).build();
     }
 
     public static CommonResult ok() {
         if (ok == null) {
-            ok = CommonResult.builder().code(200).status("ok").message("").data(null).build();
+            ok = CommonResult.builder().code(200).status("ok").message("成功").data(null).build();
         }
         return ok;
     }

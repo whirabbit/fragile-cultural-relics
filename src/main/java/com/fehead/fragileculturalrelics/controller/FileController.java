@@ -34,18 +34,18 @@ public class FileController {
         } catch (IOException e) {
             return CommonResult.error(e.getMessage());
         }
-        return CommonResult.ok(savedFileService.saveImage(savedImage));
+        return CommonResult.ok("image"+savedFileService.saveImage(savedImage));
     }
 
     @PostMapping("/upload/csv")
-    public CommonResult uploadCsv(MultipartFile image) {
+    public CommonResult uploadCsv(MultipartFile csv) {
         SavedFile savedFile = new SavedFile();
         try {
-            savedFile.setFile(image.getBytes());
+            savedFile.setFile(csv.getBytes());
         } catch (IOException e) {
             return CommonResult.error(e.getMessage());
         }
-        return CommonResult.ok(savedFileService.saveCsv(savedFile));
+        return CommonResult.ok("csv:"+savedFileService.saveCsv(savedFile));
     }
 
     @GetMapping("/onload/csv/{id}")
@@ -64,7 +64,7 @@ public class FileController {
     public void onloadCsv(@PathVariable String id, HttpServletResponse response) throws IOException {
         SavedImage file = savedFileService.getImageById(id);
         if (file != null) {
-            response.setContentType("txt/csv");
+            response.setContentType("image/*");
             response.getOutputStream().write(file.getFile());
         } else {
             log.error("/csv/" + id + "获取文件时出错");

@@ -24,24 +24,24 @@ public class SavedFileServiceImpl implements SavedFileService {
 
     @Override
     public String saveCsv(SavedFile file) {
-        mongoTemplate.save(file, "savedFile");
+        mongoTemplate.save(file, "savedCsv");
         return file.getId();
     }
 
     @Override
     public String saveImage(SavedImage image) {
-        mongoTemplate.save(image, "image");
+        mongoTemplate.save(image, "savedImage");
         return image.getId();
     }
 
     @Override
     public SavedImage getImageById(String id) {
-        return mongoTemplate.findById(id, SavedImage.class, "image");
+        return mongoTemplate.findById(id, SavedImage.class, "savedImage");
 
     }
 
     @Override
     public SavedFile getCsvById(String id) {
-        return mongoTemplate.findById(id, SavedFile.class, "savedFile");
+        return mongoTemplate.findById(id, SavedFile.class, "savedCsv");
     }
 }

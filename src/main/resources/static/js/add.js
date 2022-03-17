@@ -84,11 +84,29 @@ function postSubmit() {
     }
     //提交
     let json = {}
-
     json["文物信息"] = getJson($("#document-part-1"));
     json["环境信息"] = getJson($("#document-part-2"));
     json["病害信息与劣化参数"] = getJson($("#document-part-3"));
     json["保护方案"] = getJson($("#document-part-4"));
+    let form = {
+        document: json
+    }
+    console.log(form)
+    $.ajax({
+        url: "http://localhost:8080/document/submit",
+        type: 'post',
+        contentType: "application/json",
+        dataType: "json",
+        data: JSON.stringify(form),
+        success: function (res) {
+            //提交简略信息
+            $("#info-id").attr("value", res.data);
+            console.log(res)
+            $("#document-info").children("form").submit();
+
+        }
+    });
+
     console.log(json);
 }
 
@@ -105,6 +123,7 @@ function checkUpload() {
             return false;
         }
     }
+    return true;
 }
 
 /**
@@ -141,8 +160,22 @@ function getJson($ul) {
  */
 function uploadCsv() {
     let prev = $(this).prev();
-
-    console.log(prev);
+    let formData = new FormData();
+    formData.append("csv", prev[0].files[0]);
+    $.ajax({
+        url: 'http://localhost:8080/file/upload/csv',
+        type: 'POST',
+        cache: false,
+        data: formData,
+        processData: false,
+        contentType: false
+    }).done(function (res) {
+        console.log(res)
+        let parent = prev.parent().parent();
+        parent.attr("data-id", res.data)
+        //修改状态
+        parent.attr("data-upload", "true")
+    });
 }
 
 /**
@@ -151,9 +184,8 @@ function uploadCsv() {
  */
 function uploadImage() {
     let prev = $(this).prev();
-    let formData=new FormData();
-    console.log(prev[0].files);
-    formData.append("image",prev[0].files[0]);
+    let formData = new FormData();
+    formData.append("image", prev[0].files[0]);
     $.ajax({
         url: 'http://localhost:8080/file/upload/image',
         type: 'POST',
@@ -161,10 +193,30 @@ function uploadImage() {
         data: formData,
         processData: false,
         contentType: false
-    }).done(function(res) {
+    }).done(function (res) {
         console.log(res)
-        prev.parent().parent().attr("data-id",res.data)
+        let parent = prev.parent().parent();
+        parent.attr("data-id", res.data)
+        //修改状态
+        parent.attr("data-upload", "true")
     });
 
-    console.log(prev);
+
+}
+
+function uploading() {
+    let formData = new FormData();
+    let $image = $('#image-input');
+
+    formData.append("image", $image[0].files[0]);
+    $.ajax({
+        url: 'http://localhost:8080/file/upload/image',
+        type: 'POST',
+        cache: false,
+        data: formData,
+        processData: false,
+        contentType: false
+    }).done(function (res) {
+        $('#image-id').attr("value", res.data)
+    });
 }
