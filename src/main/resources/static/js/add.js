@@ -1,6 +1,11 @@
+const HOST_URL = "http://localhost:8080/";
 //初始化
 $(function () {
     $("img").click(add);
+    //检查为空
+    $("input").on("change", function () {
+        let val = $(this).val();
+    })
     // $('button').click(postSubmit)
 })
 
@@ -91,9 +96,8 @@ function postSubmit() {
     let form = {
         document: json
     }
-    console.log(form)
     $.ajax({
-        url: "http://localhost:8080/document/submit",
+        url: HOST_URL + "document/submit",
         type: 'post',
         contentType: "application/json",
         dataType: "json",
@@ -102,12 +106,39 @@ function postSubmit() {
             //提交简略信息
             $("#info-id").attr("value", res.data);
             console.log(res)
-            $("#document-info").children("form").submit();
+            let info = {
+                name: $("#info-name").val(),
+                id: res.data,
+                number: $("#info-number").val(),
+                info: $("#info-info").val(),
+                chemicalComposition: $("#info-chemicalComposition").val(),
+                image: $("#image-id").val()
+            }
+            console.log(info)
 
+
+            $.ajax({
+                    url: HOST_URL + "document/submitInfo",
+                    type: 'post',
+                    contentType: "application/json",
+                    dataType: "json",
+                    data: JSON.stringify(info),
+                    success: function (res) {
+                        alert("oo")
+                    }
+                }
+            );
+
+            $(this).children("button").attr("disabled", true)
+            //打开新窗户
+            // let b = confirm("已经提交,是否继续");
+            // if (b)
+            //     location.reload();
+            // else
+            //     window.open(HOST_URL);
         }
     });
 
-    console.log(json);
 }
 
 /**
@@ -159,11 +190,12 @@ function getJson($ul) {
  * @param e
  */
 function uploadCsv() {
-    let prev = $(this).prev();
+    let $this = $(this);
+    let prev = $this.prev();
     let formData = new FormData();
     formData.append("csv", prev[0].files[0]);
     $.ajax({
-        url: 'http://localhost:8080/file/upload/csv',
+        url: HOST_URL + 'file/upload/csv',
         type: 'POST',
         cache: false,
         data: formData,
@@ -171,6 +203,8 @@ function uploadCsv() {
         contentType: false
     }).done(function (res) {
         console.log(res)
+        $this.attr("disabled", true);
+        $this.css("background-color", "rgba(211,207,207,0.44)")
         let parent = prev.parent().parent();
         parent.attr("data-id", res.data)
         //修改状态
@@ -183,11 +217,12 @@ function uploadCsv() {
  * @param e
  */
 function uploadImage() {
-    let prev = $(this).prev();
+    let $this = $(this);
+    let prev = $this.prev();
     let formData = new FormData();
     formData.append("image", prev[0].files[0]);
     $.ajax({
-        url: 'http://localhost:8080/file/upload/image',
+        url: HOST_URL + 'file/upload/image',
         type: 'POST',
         cache: false,
         data: formData,
@@ -195,6 +230,8 @@ function uploadImage() {
         contentType: false
     }).done(function (res) {
         console.log(res)
+        $this.attr("disabled", true);
+        $this.css("background-color", "rgba(211,207,207,0.44)")
         let parent = prev.parent().parent();
         parent.attr("data-id", res.data)
         //修改状态
@@ -210,13 +247,16 @@ function uploading() {
 
     formData.append("image", $image[0].files[0]);
     $.ajax({
-        url: 'http://localhost:8080/file/upload/image',
+        url: HOST_URL + 'file/upload/image',
         type: 'POST',
         cache: false,
         data: formData,
         processData: false,
-        contentType: false
-    }).done(function (res) {
-        $('#image-id').attr("value", res.data)
+        contentType: false,
+        success: function (res) {
+            $('#image-id').attr("value", res.data)
+            $("#info-button").attr("disabled", true);
+            $("#info-button").css("background-color", "rgba(211,207,207,0.44)")
+        }
     });
 }

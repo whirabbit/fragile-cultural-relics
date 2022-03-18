@@ -1,9 +1,10 @@
 package com.fehead.fragileculturalrelics.service;
 
+import com.fehead.fragileculturalrelics.entity.BriefInfo;
 import com.fehead.fragileculturalrelics.entity.ObjectDocument;
-import com.fehead.fragileculturalrelics.entity.PostInfo;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 文物文档服务类
@@ -19,7 +20,7 @@ public interface ObjectDocumentService {
      * @param title 标题
      * @return id集合
      */
-    List<String> searchDocumentByTitle(String title);
+    List<BriefInfo> searchDocumentByTitle(String title);
 
     /**
      * 通过id返回文章
@@ -27,7 +28,7 @@ public interface ObjectDocumentService {
      * @param id
      * @return
      */
-    ObjectDocument getDocumentById(String id);
+    Map<String ,Object> getDocumentById(String id);
 
     /**
      * 将文章保存在数据库
@@ -43,5 +44,5 @@ public interface ObjectDocumentService {
      * @param info
      * @return
      */
-    Boolean saveDocumentInfo(PostInfo info);
+    Boolean saveDocumentInfo(BriefInfo info);
 }

@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>添加文物信息</title>
-    <link href="../css/index.css">
     <script src="../js/jquery-3.6.0.min.js"></script>
     <script src="../js/add.js"></script>
     <style>
@@ -24,6 +23,11 @@
             margin: 1px;
             border: 2px;
         }
+
+        button {
+            background-color: #4646ce;
+            border: 0;
+        }
     </style>
 </head>
 <body>
@@ -33,27 +37,33 @@
         <table>
             <tr>
                 <td>文物名称</td>
-                <td><input name="name" type="text"><input id="info-id" name="id" type="hidden" value="123"></td>
+                <td>
+                    <input required name="name" id="info-name" type="text">
+                    <input id="info-id" name="id" type="hidden" >
+                </td>
             </tr>
             <tr>
                 <td>文物编号</td>
-                <td><input name="number" type="text"></td>
+                <td><input name="number" id="info-number" type="text"></td>
             </tr>
             <tr>
                 <td>考古信息摘要（前10字）</td>
-                <td><input name="info" type="text"></td>
+                <td>
+                    <input name="info" id="info-info" type="text">
+                </td>
             </tr>
             <tr>
                 <td> 化学组成（前10字）</td>
-                <td><input name="chemicalComposition" type="text"></td>
+                <td><input name="chemicalComposition" id="info-chemicalComposition" type="text"></td>
             </tr>
             <tr>
                 <td>文物照片（缩略图）</td>
-                <td><input id="image-input" name="img" type="file" accept="image/*"><input id="image-id" name="image"
-                                                                                           type="hidden"></td>
                 <td>
-                    <button onclick="uploading()">上传
-                    </button>
+                    <input id="image-input" name="img" type="file" accept="image/*">
+                    <input id="image-id" name="image" type="hidden" value="empty">
+                </td>
+                <td>
+                    <button id="info-button" type="button" onclick="uploading()">上传</button>
                 </td>
             </tr>
         </table>

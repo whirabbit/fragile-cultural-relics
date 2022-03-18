@@ -1,11 +1,40 @@
-
-i {
-    display: inline-block;
-    background: url("../img/add.png") no-repeat;
-    width: 50%;
-    height: 50%;
+button {
+    background-color: #4646ce;
+    border: 0px;
+    width: 140px;
+    height: 40px;
 }
 
-li, ul {
-    list-style: none;
+#u0_img {
+    border-width: 0px;
+    position: absolute;
+    left: 7%;
+    top: 50px;
+    width: 1000px;
+    height: 100px
+}
+
+#u1 {
+    position: absolute;
+    left: 300px;
+    top: 140px;
+    font-size: 70px;
+    font-weight: bolder;
+}
+
+#u2 {
+    position: absolute;
+    left: 300px;
+    top: 350px;
+}
+
+#u3 {
+    position: absolute;
+    left: 888px;
+    top: 350px;
+}
+
+input {
+    width: 523px;
+    height: 40px;
 }

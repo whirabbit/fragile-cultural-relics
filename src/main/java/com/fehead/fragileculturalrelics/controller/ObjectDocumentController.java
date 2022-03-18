@@ -1,13 +1,10 @@
 package com.fehead.fragileculturalrelics.controller;
 
+import com.fehead.fragileculturalrelics.entity.BriefInfo;
 import com.fehead.fragileculturalrelics.entity.CommonResult;
 import com.fehead.fragileculturalrelics.entity.ObjectDocument;
-import com.fehead.fragileculturalrelics.entity.PostInfo;
 import com.fehead.fragileculturalrelics.service.ObjectDocumentService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author wrobby
@@ -28,8 +25,17 @@ public class ObjectDocumentController {
         return CommonResult.ok(document.getId());
     }
     @PostMapping("/submitInfo")
-    public CommonResult submit(PostInfo info) {
+    public CommonResult submit( @RequestBody BriefInfo info) {
         documentService.saveDocumentInfo(info);
         return CommonResult.ok(info.getId());
     }
+    @GetMapping("/search/{title}")
+    public CommonResult search(@PathVariable String title){
+        return CommonResult.ok(documentService.searchDocumentByTitle(title));
+    }
+    @GetMapping("/get/{id}")
+    public CommonResult getDocument(@PathVariable String id){
+        return CommonResult.ok(documentService.getDocumentById(id));
+    }
+
 }

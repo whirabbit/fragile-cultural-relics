@@ -3,8 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>主页</title>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/index.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/index.css">
 </head>
-<body>
 
+<body>
+<div id="base">
+    <div>
+        <img id="u0_img" class="img " src="img/main_top.png">
+    </div>
+    <div id="u1">
+        <div id="u1_text">
+            <p>脆弱文物科研数据库</p>
+        </div>
+    </div>
+    <div id="u2">
+        <div id="u2_div"></div>
+        <input id="u2_input" type="text" placeholder="文物样本名称（可以采用模糊搜索）">
+    </div>
+
+    <div id="u3">
+        <div id="u3_text">
+            <button type="button" onclick="search()">搜索</button>
+        </div>
+    </div>
+</div>
 </body>
+</script>
 </html>

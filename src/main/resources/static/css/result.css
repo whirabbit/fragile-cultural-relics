@@ -1,0 +1,43 @@
+#u0_img {
+    margin-left: 70px;
+    width: 1000px;
+    height: 100px
+}
+
+#u1 {
+    padding-top: 10px;
+    display: inline-block;
+    font-size: 30px;
+}
+
+#u2 {
+    display: inline-block;
+}
+
+#u3 {
+    display: inline-block;
+}
+
+#u4 {
+    display: inline-block;
+}
+
+input {
+    width: 523px;
+    height: 40px;
+}
+
+button {
+    width: 140px;
+    height: 40px;
+    background-color: #4646ce;
+    border: 0px;
+}
+
+table ,td,tr{
+    border: 1px solid black;
+}
+img{
+    width: 100px;
+    height: 100px;
+}

@@ -34,7 +34,7 @@ public class FileController {
         } catch (IOException e) {
             return CommonResult.error(e.getMessage());
         }
-        return CommonResult.ok("image"+savedFileService.saveImage(savedImage));
+        return CommonResult.ok("image:"+savedFileService.saveImage(savedImage));
     }
 
     @PostMapping("/upload/csv")
@@ -67,7 +67,7 @@ public class FileController {
             response.setContentType("image/*");
             response.getOutputStream().write(file.getFile());
         } else {
-            log.error("/csv/" + id + "获取文件时出错");
+            log.error("/image/" + id + "获取文件时出错");
 
         }
     }
