@@ -4,11 +4,11 @@ Id= "101.200.61.174"
 const FileTreePath = "http://"+Id+":9999/file/fileTree"
 const fileDetail="http://"+Id+":9999/detils.html";
 // 对应的最外层就是全部文件的就是-1层,然后点开显示的就是第0层。对应的pid为1即pid为0的那一层里面第一个子树的子树
-$(function () {
-      $.getJSON(FileTreePath, null, function (json) {
-          index(json)
-       });
-})
+// $(function () {
+//       $.getJSON(FileTreePath, null, function (json) {
+//           index(json)
+//        });
+// })
 //
 
 function index(json) {

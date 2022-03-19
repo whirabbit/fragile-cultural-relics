@@ -27,6 +27,10 @@ input {
     height: 40px;
 }
 
+.checkbox {
+    width: 20px;
+}
+
 button {
     width: 140px;
     height: 40px;
@@ -34,10 +38,16 @@ button {
     border: 0px;
 }
 
-table ,td,tr{
+table {
     border: 1px solid black;
+    margin-left: 20%;
 }
-img{
+
+td {
+    border: 1px solid black;;
+}
+
+img {
     width: 100px;
     height: 100px;
 }

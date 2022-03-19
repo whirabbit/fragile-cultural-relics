@@ -4,21 +4,39 @@
     <meta charset="UTF-8">
     <title>文物详情页</title>
     <script src="../js/jquery-3.6.0.min.js"></script>
+
     <script src="../js/detail.js"></script>
+    <style>
+        img {
+            /*display: inline-block;*/
+            max-width: 100%;
+        }
+
+        li {
+            list-style: none;
+        }
+    </style>
 </head>
 <body>
 <div>
     <h2>摘要信息</h2>
-    <div id="document-info"></div>
-    <p id="info-name"></p>
-    <p id="info-number"></p>
-    <p id="info-info"></p>
-    <p id="info-ch"></p>
-    <p id="info-image"></p>
+    <div id="document-info">
+        <p id="info-name">文物名称:</p>
+        <p id="info-number">文物编号:</p>
+        <p id="info-info">考古信息摘要（前10字）:</p>
+        <p id="info-ch">化学组成（前10字):</p>
+        <p id="info-image">文物照片（缩略图）:</p>
+    </div>
     <hr/>
     <div>
         <h2>详细信息</h2>
-        <div id="document-detail"></div>
+        <div id="document-detail">
+            <ul id="ul-1">
+
+                <li id="li-1"></li>
+            </ul>
+
+        </div>
     </div>
 </div>
 </body>

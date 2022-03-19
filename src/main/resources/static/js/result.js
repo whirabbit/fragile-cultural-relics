@@ -1,15 +1,14 @@
-const HOST_URL = "http://localhost:8080/";
+const HOST_URL = "http://101.200.61.174:8080/";
 $(
     function () {
         //获取参数信息
-        let href = window.location.href;
-        // console.log(href
+        let href = decodeURI(window.location.href);
+        // console.log(href)
         if (href.lastIndexOf("?") > 0) {
             let url = href.substring(href.lastIndexOf("?") + 1);
             if (url.length > 0) {
-                console.log(url)
+                $("#u2_input").attr("value",url)
                 $.get(HOST_URL + "/document/search/" + url, function (response) {
-                    console.log(response)
                     //添加数据
                     addaInfo(response.data);
                 })
@@ -21,10 +20,12 @@ $(
 function addaInfo(list) {
     console.log(list)
     let tbody = $("#result-tbody");
+    tbody.empty();
     for (let l of list) {
         let $tr = $("<tr></tr>");
         let imageId = l.image.substring(6);
-        $tr.append("<td>" + "选择" + "</td>")
+        let $check = $("<input type='checkbox'  name='compare' class='checkbox' data-id='" + l.id + "' >");
+        $tr.append($("<td></td>").append($check));
         let $name = $("<td id='" + l.id + "' >" + l.name + "</td>");
         $name.click(function () {
             window.open(HOST_URL + "pages/detail.html?" + l.id);
@@ -45,4 +46,15 @@ function search() {
         //添加数据
         addaInfo(response.data);
     })
+}
+
+function compare() {
+    let checkbox = $("input[name='compare']:checked");
+    if (checkbox.length !== 2) {
+        alert("只能比较两组")
+        return;
+    }
+    let id1 = $(checkbox[0]).attr("data-id");
+    let id2 = $(checkbox[1]).attr("data-id");
+    window.open(HOST_URL + "pages/compare.html?" + id1 + "&" + id2);
 }

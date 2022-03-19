@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>比较</title>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+</head>
+<style>
+    #if-1 {
+        width: 50%;
+        position: absolute;
+        left: 0;
+    }
+
+    #if-2 {
+        width: 50%;
+        position: absolute;
+        right: 0;
+    }
+</style>
+<body>
+<iframe id="if-1" src="div.html" height="500" width="1200" frameborder="0" scrolling="0"></iframe>
+<iframe id="if-2" src="div.html" height="500" width="1200" frameborder="0" scrolling="0"></iframe>
+</body>
+<script>
+    let url = "http://101.200.61.174:8080/pages/detail.html?";
+    let href = window.location.href;
+    let id = href.substring(href.lastIndexOf("?") + 1);
+    let ids = id.split('&')
+    $("#if-1").attr("src", url + ids[0])
+    $("#if-2").attr("src", url + ids[1])
+</script>
+</html>

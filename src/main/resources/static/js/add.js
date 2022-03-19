@@ -1,11 +1,8 @@
-const HOST_URL = "http://localhost:8080/";
+const HOST_URL = "http://101.200.61.174:8080/";
 //初始化
 $(function () {
     $("img").click(add);
-    //检查为空
-    $("input").on("change", function () {
-        let val = $(this).val();
-    })
+
     // $('button').click(postSubmit)
 })
 
@@ -84,7 +81,6 @@ function addImage(e) {
 function postSubmit() {
     //检查文件是否上传
     if (!checkUpload()) {
-        alert("有文件未上传,上传后再提交");
         return;
     }
     //提交
@@ -124,18 +120,18 @@ function postSubmit() {
                     dataType: "json",
                     data: JSON.stringify(info),
                     success: function (res) {
-                        alert("oo")
+                        //打开新窗户
+                        let b = confirm("已经提交,是否继续");
+                        if (b)
+                            location.reload();
+                        else
+                            location.replace(HOST_URL );
                     }
                 }
             );
 
             $(this).children("button").attr("disabled", true)
-            //打开新窗户
-            // let b = confirm("已经提交,是否继续");
-            // if (b)
-            //     location.reload();
-            // else
-            //     window.open(HOST_URL);
+
         }
     });
 
@@ -151,6 +147,14 @@ function checkUpload() {
         let $e = $(e);
         let attr = $e.attr("data-upload");
         if (attr === "false") {
+            alert("有文件未上传,上传后再提交");
+            return false;
+        }
+    }
+    let input = $("input:text")
+    for (let put of input) {
+        if ($(put).val().length === 0) {
+            alert("不能为空")
             return false;
         }
     }

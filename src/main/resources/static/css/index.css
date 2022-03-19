@@ -1,10 +1,10 @@
-button {
+
+button{
     background-color: #4646ce;
     border: 0px;
     width: 140px;
     height: 40px;
 }
-
 #u0_img {
     border-width: 0px;
     position: absolute;
@@ -24,13 +24,18 @@ button {
 
 #u2 {
     position: absolute;
-    left: 300px;
+    left: 250px;
     top: 350px;
 }
 
 #u3 {
     position: absolute;
-    left: 888px;
+    left: 788px;
+    top: 350px;
+}
+#u4 {
+    position: absolute;
+    left: 940px;
     top: 350px;
 }
 
