@@ -1,5 +1,7 @@
 const documentURL = "http://101.200.61.174:8080/document/get/";
 const IMG_URL = "http://101.200.61.174:8080/file/";
+// const documentURL = "http://localhost:8080/document/get/";
+// const IMG_URL = "http://localosh:8080/file/";
 $(
     function () {
         //获取参数信息

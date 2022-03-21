@@ -27,25 +27,25 @@ public class FileController {
     }
 
     @PostMapping("/upload/image")
-    public CommonResult uploadImage(MultipartFile image) {
+    public CommonResult uploadImage(MultipartFile file) {
         SavedImage savedImage = new SavedImage();
         try {
-            savedImage.setFile(image.getBytes());
+            savedImage.setFile(file.getBytes());
         } catch (IOException e) {
             return CommonResult.error(e.getMessage());
         }
-        return CommonResult.ok("image:"+savedFileService.saveImage(savedImage));
+        return CommonResult.ok("image:" + savedFileService.saveImage(savedImage));
     }
 
     @PostMapping("/upload/csv")
-    public CommonResult uploadCsv(MultipartFile csv) {
+    public CommonResult uploadCsv(MultipartFile file) {
         SavedFile savedFile = new SavedFile();
         try {
-            savedFile.setFile(csv.getBytes());
+            savedFile.setFile(file.getBytes());
         } catch (IOException e) {
             return CommonResult.error(e.getMessage());
         }
-        return CommonResult.ok("csv:"+savedFileService.saveCsv(savedFile));
+        return CommonResult.ok("csv:" + savedFileService.saveCsv(savedFile));
     }
 
     @GetMapping("/onload/csv/{id}")
@@ -68,7 +68,18 @@ public class FileController {
             response.getOutputStream().write(file.getFile());
         } else {
             log.error("/image/" + id + "获取文件时出错");
-
         }
+    }
+
+    @GetMapping("/delete/image/{id}")
+    public CommonResult deleteImage(@PathVariable String id) {
+        savedFileService.deleteImage(id);
+        return CommonResult.ok();
+    }
+
+    @GetMapping("/delete/csv/{id}")
+    public CommonResult deleteCsv(@PathVariable String id) {
+        savedFileService.deleteCsv(id);
+        return CommonResult.ok();
     }
 }

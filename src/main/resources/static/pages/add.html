@@ -5,6 +5,8 @@
     <title>添加文物信息</title>
     <script src="../js/jquery-3.6.0.min.js"></script>
     <script src="../js/add.js"></script>
+    <link href="../css/layui.css" rel="stylesheet">
+    </style>
     <style>
         img {
             width: 22px;
@@ -15,18 +17,13 @@
             text-align: center;
         }
 
-        li {
-            list-style: none;
+        ul, li {
+            padding: revert;
         }
 
         i {
             margin: 1px;
             border: 2px;
-        }
-
-        button {
-            background-color: #4646ce;
-            border: 0;
         }
     </style>
 </head>
@@ -38,32 +35,32 @@
             <tr>
                 <td>文物名称</td>
                 <td>
-                    <input required name="name" id="info-name" type="text">
-                    <input id="info-id" name="id" type="hidden" >
+                    <input class="layui-input" required name="name" id="info-name" type="text">
+                    <input id="info-id" name="id" type="hidden">
                 </td>
             </tr>
             <tr>
                 <td>文物编号</td>
-                <td><input name="number" id="info-number" type="text"></td>
+                <td><input class="layui-input" name="number" id="info-number" type="text"></td>
             </tr>
             <tr>
                 <td>考古信息摘要（前10字）</td>
                 <td>
-                    <input name="info" id="info-info" type="text">
+                    <input class="layui-input" name="info" id="info-info" type="text">
                 </td>
             </tr>
             <tr>
                 <td> 化学组成（前10字）</td>
-                <td><input name="chemicalComposition" id="info-chemicalComposition" type="text"></td>
+                <td><input class="layui-input" name="chemicalComposition" id="info-chemicalComposition" type="text">
+                </td>
             </tr>
             <tr>
                 <td>文物照片（缩略图）</td>
                 <td>
-                    <input id="image-input" name="img" type="file" accept="image/*">
+                    <button type="button" class="layui-btn layui-btn-normal layui-btn-xs" id="test1">
+                        <i class="layui-icon">&#xe67c;</i>上传图片
+                    </button>
                     <input id="image-id" name="image" type="hidden" value="empty">
-                </td>
-                <td>
-                    <button id="info-button" type="button" onclick="uploading()">上传</button>
                 </td>
             </tr>
         </table>
@@ -74,28 +71,51 @@
     <h2>详细信息</h2>
     <div class="div-root">
         <ul id="document-part-1" class="folder">
-            <li>文物信息<img src="../img/add.png">
+            <li>文物信息
+                <button class="layui-btn layui-btn-xs layui-btn-normal" id="document-part-button-0">
+                    添加
+                </button>
             </li>
         </ul>
     </div>
 
     <div class="div-root">
         <ul id="document-part-2" class="folder">
-            <li>环境信息<img src="../img/add.png"></li>
+            <li>环境信息
+                <button class="layui-btn layui-btn-xs layui-btn-normal" id="document-part-button-1">
+                    添加
+                </button>
+            </li>
         </ul>
     </div>
     <div class="div-root">
         <ul id="document-part-3" class="folder">
-            <li>病害信息与劣化参数<img src="../img/add.png"></li>
+            <li>病害信息与劣化参数
+                <button class="layui-btn layui-btn-xs layui-btn-normal" id="document-part-button-2">
+                    添加
+                </button>
+            </li>
         </ul>
     </div>
     <div class="div-root">
         <ul id="document-part-4" class="folder">
-            <li>保护方案<img src="../img/add.png"></li>
+            <li>保护方案
+                <button class="layui-btn layui-btn-xs layui-btn-normal" id="document-part-button-3">
+                    添加
+                </button>
+            </li>
         </ul>
     </div>
-    <button onclick="postSubmit()">提交</button>
+    <div>
+        <div class="layui-col-md5">&nbsp;</div>
+        <div class="layui-col-md2">
+            <button class="layui-btn layui-btn-lg layui-btn-normal" onclick="postSubmit()">提交</button>
+        </div>
+    </div>
+
+
 </div>
 <div id="test"></div>
 </body>
+<script src="../js/layui.js"></script>
 </html>

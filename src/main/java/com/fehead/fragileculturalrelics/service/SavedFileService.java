@@ -42,4 +42,8 @@ public interface SavedFileService {
      * @return
      */
     SavedFile getCsvById(String id);
+
+    Boolean deleteImage(String id);
+
+    Boolean deleteCsv(String id);
 }

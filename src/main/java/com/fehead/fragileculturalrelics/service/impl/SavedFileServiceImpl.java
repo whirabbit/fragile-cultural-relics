@@ -5,6 +5,8 @@ import com.fehead.fragileculturalrelics.entity.SavedImage;
 import com.fehead.fragileculturalrelics.service.SavedFileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
 /**
@@ -43,5 +45,17 @@ public class SavedFileServiceImpl implements SavedFileService {
     @Override
     public SavedFile getCsvById(String id) {
         return mongoTemplate.findById(id, SavedFile.class, "savedCsv");
+    }
+
+    @Override
+    public Boolean deleteImage(String id) {
+        mongoTemplate.remove(new Query(Criteria.where("id").is(id)),"savedImage");
+        return true;
+    }
+
+    @Override
+    public Boolean deleteCsv(String id) {
+        mongoTemplate.remove(new Query(Criteria.where("id").is(id)),"savedCsv");
+        return true;
     }
 }

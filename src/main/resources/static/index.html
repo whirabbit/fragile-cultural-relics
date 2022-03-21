@@ -5,6 +5,7 @@
     <title>主页</title>
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/index.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/layui.css">
     <link rel="stylesheet" type="text/css" href="css/index.css">
 </head>
 
@@ -18,17 +19,16 @@
             <p>脆弱文物科研数据库</p>
         </div>
     </div>
-    <div id="u2">
-        <div id="u2_div"></div>
-        <input id="u2_input" type="text" placeholder="文物样本名称（可以采用模糊搜索）">
+    <div id="u2"  class="layui-input-block" style="width: 480px">
+        <input id="u2_input" class="layui-input" lay-verify="required" type="text" placeholder="文物样本名称（可以采用模糊搜索）">
     </div>
     <div id="u3">
-            <button id="search" type="button" onclick="search()">搜索</button>
+        <button id="search" class="layui-btn layui-btn-normal" onclick="search()">搜索</button>
     </div>
     <div id="u4">
-        <button id="add" type="button" onclick="toAdd()">去添加</button>
+        <button id="add" class="layui-btn layui-btn-normal" onclick="toAdd()">去添加</button>
     </div>
 </div>
 </body>
-
+<script src="js/layui.js"></script>
 </html>

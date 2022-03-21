@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/layui.css">
+</head>
+<script src="js/jquery-3.6.0.min.js"></script>
+<script src="js/layui.js"></script>
+<body>
+<button type="button" class="layui-btn layui-btn-normal layui-btn-xs" id="test1">
+    <i class="layui-icon">&#xe67c;</i>上传图片
+</button>
+<button id="input-1"> 提交</button>
+<script>
+    bindUpload("test1")
+    //绑定上传
+    function bindUpload(id) {
+        let upload = layui.upload; //得到 upload 对象
+        //创建一个上传组件
+        upload.render({
+            elem: '#' + id
+            , url: "http://localhost:8080/" + 'file/upload/image'
+            , done: function (res, index, upload) { //上传后的回调
+                console.log(res)
+                console.log(index)
+                console.log(upload)
+                console.log(this);
+                if (res.code === 200) {
+                    layer.msg("图片上传成功");
+                }
+                $('#image-id').attr("value", res.data)
+                // $('#test1').attr("class", "layui-btn layui-btn-xs layui-btn-disabled");
+                // $("#info-button").attr("class", "layui-btn layui-btn-xs layui-btn-disabled");
+            }
+            , accept: 'images' //允许上传的文件类型
+            , acceptMime: 'image/*'
+            , auto: false
+            , bindAction: "#input-1"
+        })
+    }
+</script>
+</body>
+</html>

@@ -1,6 +1,7 @@
 package com.fehead.fragileculturalrelics.config;
 
 import org.springframework.boot.SpringBootConfiguration;
+import org.springframework.context.annotation.Bean;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
@@ -12,7 +13,7 @@ import org.springframework.web.filter.CorsFilter;
  */
 @SpringBootConfiguration
 public class WebGlobalConfig {
-
+    @Bean
     public CorsFilter corsFilter() {
         //创建CorsConfiguration对象后添加配置
         CorsConfiguration config = new CorsConfiguration();

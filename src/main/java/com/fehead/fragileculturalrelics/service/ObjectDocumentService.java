@@ -28,7 +28,7 @@ public interface ObjectDocumentService {
      * @param id
      * @return
      */
-    Map<String ,Object> getDocumentById(String id);
+    Map<String, Object> getDocumentById(String id);
 
     /**
      * 将文章保存在数据库
@@ -45,4 +45,6 @@ public interface ObjectDocumentService {
      * @return
      */
     Boolean saveDocumentInfo(BriefInfo info);
+
+
 }

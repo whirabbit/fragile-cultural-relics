@@ -12,20 +12,23 @@
 
 #u2 {
     display: inline-block;
+    margin-left: 20px;
+}
+
+#u2_input {
+    width: 400px;
 }
 
 #u3 {
     display: inline-block;
+    margin-left: 20px;
 }
 
 #u4 {
     display: inline-block;
+    margin-left: 10px;
 }
 
-input {
-    width: 523px;
-    height: 40px;
-}
 
 .checkbox {
     width: 20px;
@@ -47,7 +50,16 @@ td {
     border: 1px solid black;;
 }
 
-img {
-    width: 100px;
+.layui-table-cell {
+
     height: 100px;
+    line-height: 100px;
+
+}
+
+/*表头高度*/
+th .layui-table-cell {
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
 }
