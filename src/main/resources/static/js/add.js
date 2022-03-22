@@ -118,7 +118,6 @@ function bindImage(id) {
             parent.attr("data-id", res.data)
             //修改状态
             parent.attr("data-upload", "true")
-            $('#image-id').attr("value", res.data)
         }
         , accept: 'images' //允许上传的文件类型
         , acceptMime: 'image/*'
@@ -158,7 +157,6 @@ function bindCsv(id) {
             parent.attr("data-id", res.data)
             //修改状态
             parent.attr("data-upload", "true")
-            $('#image-id').attr("value", res.data)
         }
         , accept: 'text' //允许上传的文件类型
         , acceptMime: 'text/csv'
@@ -173,10 +171,17 @@ function addMessage(e) {
     let $e = $("#" + e);
     let $ul = $('<ul class="folder" ></ul>');
     let $li = $('<li class="folder" ></li>');
+    let $remove = $('<button class="layui-btn layui-btn-xs layui-btn-normal">移除</button>');
+    $remove.click(function () {
+        //处理可能无用的上传文件 检查各级
+
+        //移除元素
+        $(this).parent().parent().remove();
+    });
     let $img = $('<button class="layui-btn layui-btn-xs layui-btn-normal" id="document-part-button-' + button_num + '" >添加</button>');
     bindDropdown("document-part-button-" + button_num);
     button_num++;
-    $li.append('<i>' + name + '</i>').append($img)
+    $li.append('<i>' + name + '</i>').append($remove).append($img);
     $e.after($ul.append($li))
 }
 
@@ -185,8 +190,13 @@ function addTxt(e) {
     let $e = $("#" + e);
     let name = prompt("请输入描述");
     let i = $('<i class="txt" ></i>').text(name)
-    let input = $("<input class='layui-input' type='text' placeholder='请输入信息'>");
-    let li = $("<li></li>").append(i).append(input)
+    let input = $('<textarea placeholder="请输入内容" class="layui-textarea"></textarea>');
+    let $remove = $('<button class="layui-btn layui-btn-xs layui-btn-normal">移除</button>');
+    $remove.click(function () {
+            $(this).parent().parent().remove();
+        }
+    )
+    let li = $("<li></li>").append(i).append(input).append($remove)
     $e.after($('<ul class="txt"></ul>').html(li))
 }
 
@@ -199,8 +209,19 @@ function addCsv(e) {
         '    <i class="layui-icon">&#xe67c;</i>上传csv' +
         '</button>')
     let button = $('<button id="input-button-' + input_num + '"  class="layui-btn layui-btn-normal layui-btn-xs"  > 提交</button>')
-
-    let li = $("<li ></li>").append(i).append(input).append(button);
+    let $remove = $('<button class="layui-btn layui-btn-xs layui-btn-normal">移除</button>');
+    $remove.click(function () {
+        let parent = $(this).parent().parent();
+        //处理可能有的文件
+        let attr = parent.attr("data-id");
+        console.log(attr)
+        if (attr !== undefined) {
+            $.get(HOST_URL + "file/delete/csv/" + attr.substring(4))
+        }
+        //移除
+        parent.remove();
+    })
+    let li = $("<li ></li>").append(i).append(input).append(button).append($remove);
     $e.after($('<ul class="file" data-upload="false"></ul>').html(li))
     bindCsv(input_num);
     input_num++;
@@ -215,8 +236,19 @@ function addImage(e) {
         '    <i class="layui-icon">&#xe67c;</i>上传图片' +
         '</button>')
     let button = $('<button id="input-button-' + input_num + '"  class="layui-btn layui-btn-normal layui-btn-xs"  > 提交</button>')
-
-    let li = $('<li></li>').append(i).append(input).append(button);
+    let $remove = $('<button class="layui-btn layui-btn-xs layui-btn-normal">移除</button>');
+    $remove.click(function () {
+        //处理可能有的文件
+        let parent = $(this).parent().parent();
+        let attr = parent.attr("data-id");
+        console.log(attr)
+        if (attr !== undefined) {
+            $.get(HOST_URL + "file/delete/image/" + attr.substring(6))
+        }
+        //移除
+        parent.remove();
+    })
+    let li = $('<li></li>').append(i).append(input).append(button).append($remove);
     $e.after($('<ul class="file" data-upload="false"></ul>').html(li))
     bindImage(input_num);
     input_num++;
