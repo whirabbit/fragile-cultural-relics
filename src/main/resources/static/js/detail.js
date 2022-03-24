@@ -2,6 +2,7 @@ const documentURL = "http://101.200.61.174:8080/document/get/";
 const IMG_URL = "http://101.200.61.174:8080/file/";
 // const documentURL = "http://localhost:8080/document/get/";
 // const IMG_URL = "http://localosh:8080/file/";
+let image_num = 0;
 $(
     function () {
         //获取参数信息
@@ -18,8 +19,12 @@ $(
             $("#info-number").append(infomes.number);
             $("#info-info").append(infomes.info);
             $("#info-ch").append(infomes.chemicalComposition);
-            $("#info-image").append("<img src='" + IMG_URL + "onload/image/" + infomes.image.substring(6) + "'>"
+            $("#info-image").append("<div id='image-" + image_num + "'> <img class='image-small' src='" + IMG_URL + "onload/image/" + infomes.image.substring(6) + "' alt'点击放大'></div>"
             )
+            layer.photos({
+                photos: '#image-' + image_num++
+                , anim: 5 //0-6的选择，指定弹出图片动画类型，默认随机（请注意，3.0之前的版本用shift参数）
+            });
             console.log(document)
             addMess($("#li-1"), document)
             let detail = $("#document-detail");
@@ -43,8 +48,12 @@ function addMess(liEle, json) {
             let index = json[key].indexOf(':');
             console.log(index)
             if (index === 5) {
-                $li.append("<img src='" + IMG_URL + "onload/image/" + json[key].substring(6) + "'>")
+                $li.append("<div id='image-" + image_num + "' ><img class='image-small' src='" + IMG_URL + "onload/image/" + json[key].substring(6) + "' alt='点击放大'></div>")
                 //图片
+                layer.photos({
+                    photos: '#image-' + image_num++
+                    , anim: 5 //0-6的选择，指定弹出图片动画类型，默认随机（请注意，3.0之前的版本用shift参数）
+                });
             } else if (index === 3) {
                 //csv
                 let table = $("<table></table>");

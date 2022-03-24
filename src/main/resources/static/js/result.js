@@ -1,5 +1,7 @@
 const HOST_URL = "http://101.200.61.174:8080/";
 // const HOST_URL = "http://localhost:8080/";
+let image_len = 0;
+
 $(
     function () {
         //获取参数信息
@@ -9,11 +11,14 @@ $(
             let url = href.substring(href.lastIndexOf("?") + 1);
             if (url.length > 0) {
                 $("#u2_input").attr("value", url)
-                // $.get(HOST_URL + "/document/search/" + url, function (response) {
-                //     //添加数据
-                //     addaInfo(response.data);
-                // })
                 addinfo_2(url);
+                while (image_len > 0) {
+                    //设置点击放大
+                    layer.photos({
+                        photos: '#image-' + --image_len
+                        , anim: 5//0-6的选择，指定弹出图片动画类型，默认随机（请注意，3.0之前的版本用shift参数）
+                    });
+                }
             }
         }
     }
@@ -21,7 +26,7 @@ $(
 
 function addinfo_2(title) {
     layui.use('table', function () {
-        var table = layui.table;
+        let table = layui.table;
         table.render({
             elem: '#table-1'
             , url: HOST_URL + "/document/search/" + title
@@ -38,7 +43,10 @@ function addinfo_2(title) {
                 , {field: 'info', title: '考古信息摘要（前10字)', align: 'center'}
                 , {field: 'chemicalComposition', title: '化学组成（前10字', align: 'center'}
                 , {
-                    field: 'image', title: '文物照片（缩略图)', align: 'center', templet: '<div><img src="{{d.image}}"></div>'
+                    field: 'image',
+                    title: '文物照片（缩略图)',
+                    align: 'center',
+                    templet: '<div><div id="image-{{d.id}}"><img  src="{{d.image}}" alt="点击放大"></div></div>'
                 } //单元格内容水平居右
             ]]
             , page: true
@@ -55,6 +63,10 @@ function addinfo_2(title) {
                     ;
             }
         });
+        layer.photos({
+            photos: '#image-0'
+            , anim: 5//0-6的选择，指定弹出图片动画类型，默认随机（请注意，3.0之前的版本用shift参数）
+        });
     });
 }
 
@@ -65,10 +77,13 @@ function toDetail(e) {
 
 function getass(res) {
     let data = res.data;
+    let id = 0;
     for (let d of data) {
         // d.image = "<img src='" + HOST_URL + "file/image/onload/" + d.image.substring(6) + "'"
         d.image = HOST_URL + "file/onload/image/" + d.image.substring(6)
+        d.id = id++;
     }
+    image_len = id;
     return data;
 }
 
@@ -97,11 +112,14 @@ function addaInfo(list) {
 function search() {
     let val = $("#u2_input").val();
     addinfo_2(val);
-    // $.get(HOST_URL + "/document/search/" + val, function (response) {
-    //     console.log(response)
-    //     //添加数据
-    //     addaInfo(response.data);
-    // })
+    while (image_len > 0) {
+        //设置点击放大
+        layer.photos({
+            photos: '#image-' + --image_len
+            , anim: 5//0-6的选择，指定弹出图片动画类型，默认随机（请注意，3.0之前的版本用shift参数）
+        });
+        console.log(image_len)
+    }
 }
 
 function compare() {

@@ -4,22 +4,24 @@
     <meta charset="UTF-8">
     <title>文物详情页</title>
     <script src="../js/jquery-3.6.0.min.js"></script>
-
+    <link rel="stylesheet" href="../css/layui.css">
     <script src="../js/detail.js"></script>
     <style>
         img {
             /*display: inline-block;*/
-            max-width: 100%;
+            /*max-width: 100%;*/
+            width: 100px;
         }
 
         li {
             list-style: none;
         }
+
     </style>
 </head>
 <body>
 <div>
-    <h2>摘要信息</h2>
+    <h1>摘要信息</h1>
     <div id="document-info">
         <p id="info-name">文物名称:</p>
         <p id="info-number">文物编号:</p>
@@ -29,7 +31,7 @@
     </div>
     <hr/>
     <div>
-        <h2>详细信息</h2>
+        <h1>详细信息</h1>
         <div id="document-detail">
             <ul id="ul-1">
 
@@ -40,4 +42,5 @@
     </div>
 </div>
 </body>
+<script src="../js/layui.js"></script>
 </html>
