@@ -13,25 +13,36 @@
             width: 100px;
         }
 
-        li {
-            list-style: none;
+        ul, li {
+            padding: revert;
         }
 
+        table th td {
+            table-layout: fixed;
+            empty-cells: show;
+            border-collapse: collapse;
+            margin: 0;
+
+        }
+
+        th,td {
+            border: 1px solid #0a0a0a;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
 <div>
     <h1>摘要信息</h1>
     <div id="document-info">
-        <p id="info-name">文物名称:</p>
-        <p id="info-number">文物编号:</p>
-        <p id="info-info">考古信息摘要（前10字）:</p>
-        <p id="info-ch">化学组成（前10字):</p>
-        <p id="info-image">文物照片（缩略图）:</p>
+        <h2 id="info-name">文物名称:</h2>
+        <h2 id="info-number">文物编号:</h2>
+        <h2 id="info-info">考古信息摘要（前10字）:</h2>
+        <h2 id="info-ch">化学组成（前10字):</h2>
+        <h2 id="info-image">文物照片（缩略图）:</h2>
     </div>
-    <hr/>
+    <hr class="layui-bg-blue"/>
     <div>
-        <h1>详细信息</h1>
         <div id="document-detail">
             <ul id="ul-1">
 

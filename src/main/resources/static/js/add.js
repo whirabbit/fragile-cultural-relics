@@ -158,7 +158,7 @@ function bindCsv(id) {
             //修改状态
             parent.attr("data-upload", "true")
         }
-        , accept: 'text' //允许上传的文件类型
+        , accept: 'file' //允许上传的文件类型
         , acceptMime: 'text/csv'
         , auto: false
         , bindAction: "#input-button-" + id

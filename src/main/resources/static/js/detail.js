@@ -3,6 +3,8 @@ const IMG_URL = "http://101.200.61.174:8080/file/";
 // const documentURL = "http://localhost:8080/document/get/";
 // const IMG_URL = "http://localosh:8080/file/";
 let image_num = 0;
+//递归chengshu
+let digui = 0;
 $(
     function () {
         //获取参数信息
@@ -34,11 +36,16 @@ $(
 )
 
 function addMess(liEle, json) {
-
+    digui++;
     for (let key in json) {
         let $ul = $("<ul></ul>");
         let $li = $("<li></li>");
-        $li.append(key + ":")
+        console.log(digui)
+        if (digui === 1) {
+            $li.append("<h1>" + key + ":"+ "</h1>")
+        } else {
+            $li.append("<h2>" + key + "</h2>")
+        }
         $ul.append($li);
         liEle.append($ul);
         if (typeof json[key] != 'string') {
@@ -46,7 +53,6 @@ function addMess(liEle, json) {
         } else {
             //检查类型
             let index = json[key].indexOf(':');
-            console.log(index)
             if (index === 5) {
                 $li.append("<div id='image-" + image_num + "' ><img class='image-small' src='" + IMG_URL + "onload/image/" + json[key].substring(6) + "' alt='点击放大'></div>")
                 //图片
@@ -69,7 +75,7 @@ function addMess(liEle, json) {
 
         }
     }
-
+    digui--;
 }
 
 function JSONLength(obj) {
@@ -114,6 +120,5 @@ function showCsv(txt, demo) {
             $(tr[0].children[k]).html(d[k]);
         }
         tr.appendTo(demo);
-
     }
 }

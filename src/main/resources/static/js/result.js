@@ -54,6 +54,7 @@ function addinfo_2(title) {
                 statusCode: 200 //重新规定成功的状态码为 200，table 组件默认为 0
             }
             , parseData: function (res) { //将原始数据解析成 table 组件所规定的数据
+                console.log(res)
                 return {
                     "code": res.code, //解析接口状态
                     "msg": res.message, //解析提示文本
@@ -77,13 +78,11 @@ function toDetail(e) {
 
 function getass(res) {
     let data = res.data;
-    let id = 0;
     for (let d of data) {
         // d.image = "<img src='" + HOST_URL + "file/image/onload/" + d.image.substring(6) + "'"
         d.image = HOST_URL + "file/onload/image/" + d.image.substring(6)
-        d.id = id++;
     }
-    image_len = id;
+
     return data;
 }
 
@@ -124,14 +123,14 @@ function search() {
 
 function compare() {
     let checkbox = $(".layui-table-main").find(".layui-form-checked");
-    console.log(checkbox.length)
     if (checkbox.length !== 2) {
-        alert("只能比较两组")
+        layer.msg("只能比较两组")
         return;
     }
 
     console.log($(checkbox[0]).parent().parent().next().children("div").children('a').attr("data-id"))
     let id1 = $(checkbox[0]).parent().parent().next().children("div").children('a').attr("data-id");
     let id2 = $(checkbox[1]).parent().parent().next().children("div").children('a').attr("data-id");
+    console.log(id1)
     window.open(HOST_URL + "pages/compare.html?" + id1 + "&" + id2);
 }

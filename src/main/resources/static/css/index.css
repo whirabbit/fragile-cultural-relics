@@ -1,42 +1,49 @@
 
-button{
+button {
     background-color: #4646ce;
     border: 0px;
     width: 140px;
     height: 40px;
 }
-#u0_img {
-    border-width: 0px;
+
+#u0 {
     position: absolute;
-    left: 7%;
-    top: 50px;
-    width: 1000px;
-    height: 100px
+    left: 10%;
+    top: 5%;
+    width: 80%;
+}
+
+#u0_img {
+    width: 100%;
+    border-width: 0px;
 }
 
 #u1 {
     position: absolute;
-    left: 300px;
-    top: 140px;
+    left: 23%;
+    top: 29%;
     font-size: 70px;
     font-weight: bolder;
+    width: 60%;
 }
 
 #u2 {
     position: absolute;
-    left: 180px;
-    top: 350px;
+    left: 8%;
+    width: 45%;
+    top:50%;
 }
 
 #u3 {
     position: absolute;
-    left: 788px;
-    top: 350px;
+    left: 65%;
+    top:50%;
 }
+
 #u4 {
     position: absolute;
-    left: 940px;
-    top: 350px;
+    left: 79%;
+    top:50%;
 }
 
 input {
